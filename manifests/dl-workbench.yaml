@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deeplearning-workbench
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deeplearning-workbench
+  template:
+    metadata:
+      labels:
+        app: deeplearning-workbench
+    spec:
+      containers:
+      - name: deeplearning-workbench
+        image: afritzler/deeplearning-workbench
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+      tolerations:
+      - key: "nvidia.com/gpu"
+        effect: "NoSchedule"
+        operator: "Exists"
