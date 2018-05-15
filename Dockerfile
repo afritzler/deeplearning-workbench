@@ -10,5 +10,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 RUN git clone https://github.com/fchollet/keras.git /keras
 
+RUN rm /tensorflow_*
+
 CMD exec /bin/bash -c "trap : TERM INT; sleep infinity & wait"
 
